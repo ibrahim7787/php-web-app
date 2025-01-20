@@ -1,0 +1,26 @@
+name: Test Self-Hosted Runner
+
+on:
+  push:
+    branches:
+      - main  # Trigger when changes are pushed to the main branch
+  workflow_dispatch: # Allows manual trigger of the workflow
+
+jobs:
+  test-runner:
+    runs-on: self-hosted  # Use your self-hosted runner
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Print Runner Info
+        run: |
+          echo "Running on self-hosted runner"
+          echo "Runner Name: $RUNNER_NAME"
+          echo "Runner OS: $RUNNER_OS"
+          echo "Runner Architecture: $RUNNER_ARCH"
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Event: $GITHUB_EVENT_NAME"
+
+      - name: Hello World
+        run: echo "Hello from the self-hosted runner!"
